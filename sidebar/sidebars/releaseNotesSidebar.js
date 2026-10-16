@@ -18,15 +18,23 @@ export default [
       },
       {
         type: 'category',
-        label: '12.0.x',
+        label: '12.1.x',
         collapsible: true,
         collapsed: true,
         items: [
           {
             type: 'doc',
-            id: 'release-notes/release-version-12/version-12-0-x/12.0.3',
-            label: '12.0.3',
+            id: 'release-notes/release-version-12/version-12-1-x/12.1.0',
+            label: '12.1.0',
           },
+        ],
+      },
+      {
+        type: 'category',
+        label: '12.0.x',
+        collapsible: true,
+        collapsed: true,
+        items: [
           {
             type: 'doc',
             id: 'release-notes/release-version-12/version-12-0-x/12.0.2',

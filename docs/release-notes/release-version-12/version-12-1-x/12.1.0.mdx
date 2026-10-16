@@ -1,0 +1,314 @@
+---
+last_update: { author: 'Shahnawaz Ahmed' }
+hide_table_of_contents: true
+hide_title: true
+
+---
+
+<Common.WaveMakerAIHeading scale={1.5} />
+
+WaveMaker AI 12.1.0 upgrades Angular apps and Studio to Angular 22, extends React Native apps with shared sign-in sessions and runtime environment profiles, and fixes a broad set of form, table, and partial issues in React apps.
+
+For details about the technology stack upgrades, refer to [Technology Stack](/tech-stack?v=12-1-0).
+
+## 12.1.0
+
+*Release date: October 19, 2026*
+
+<ReleaseNotesTabs>
+  <TabItem name="Features">
+    <Accordian title="User Interface">
+      {/* Content */}
+    </Accordian>
+
+    <Accordian title="Backend">
+      {/* Content */}
+    </Accordian>
+
+    <Accordian title="Platform">
+      - ### Shared sign-in session with external websites <Pill type="mobile" />
+
+        React Native apps and external websites that use the same identity provider now share a single sign-in session through the system browser, so users who sign in to the app stay signed in on the website.
+
+        Set `authMode` to `auth_session` in `browserConfig` of `wm_rn_config`.
+
+      - ### Multiple environment profiles in mobile builds <Pill type="mobile" />
+
+        A single mobile app build can now carry multiple environment profiles, such as stage, test, and production, and switch between them at runtime without a rebuild or reinstall.
+
+        Select the profiles to bundle in `Enabled Profile(s)` and set the first-launch profile in `Default Profile` under Build Preferences → Application Properties.
+
+      - ### Media query support in style classes <Pill type="mobile" />
+
+        Style classes in React Native apps now support media queries, so you can define base styles and override them for different device sizes, such as phone and tablet, using project-wide screen width breakpoints.
+
+      - ### Pull-to-refresh support <Pill type="mobile" />
+
+        Users can now swipe down on a page to refresh its content in React Native apps, with an optional custom Lottie animation as the refresh indicator and an `onPulltoRefresh` event for custom refresh logic.
+
+        Set `pulltorefresh` to `true` in `wm_rn_config.json` to enable it for the app, and set the `pulltorefresh` property on the page content widget to turn it off for a page.
+
+      - ### Custom Metro configuration <Pill type="mobile" />
+
+        Supply additional Metro settings for React Native apps, which WaveMaker merges into the default Metro configuration at build time.
+
+        Create `custommetro.config.js` in `src/main/webapp` and export an async function that modifies and returns the base `config`.
+
+      - ### Custom providers for React Native apps <Pill type="mobile" />
+
+        Wrap your React Native app with custom providers, so you can use libraries that need a top-level provider, such as `QueryClientProvider` from TanStack Query.
+
+        Create `customapp.wrapper.js` in `src/main/webapp` and export a default component that wraps its `children` with your providers.
+
+      - ### New Preview (opt-in) <Pill type="mobile" />
+
+        Try the new preview experience for React Native apps, which shows your changes faster while you build and test your app.
+
+        To turn it on, add `"profile": "new-preview"` to `wm_rn_config.json`.
+
+      - ### Responsive pages with WaveMaker AI <Pill type="web" />
+
+        WaveMaker AI builds new Web pages, or updates existing ones, to adapt across desktop, tablet, and mobile when you ask for responsiveness in the prompt.
+
+        [Documentation](../../../developing-with-agents/build-with-agents/responsive-pages)
+    </Accordian>
+
+    <Accordian title="Product Ecosystem">
+      {/* Content */}
+    </Accordian>
+  </TabItem>
+
+  <TabItem name="Enhancements">
+    <Accordian title="User Interface">
+      - ### Angular 22 and frontend library upgrades <Pill type="web" />
+
+        Generated Angular apps move from Angular 21 to Angular 22, keeping apps aligned with the latest framework release. ngx-bootstrap has been updated to its matching major version. WaveMaker Studio itself has also been upgraded from Angular 21 to Angular 22.
+
+        <br />
+
+        :::warning\[Action required: Node.js upgrade]
+        Node.js for Angular apps is updated from **22.18.0** to **22.22.3**. Upgrade Node.js to 22.22.3 in your local and CI/CD build environments before building Angular apps.
+        :::
+
+        For the exact versions, see the [12.1.0 technology stack](/tech-stack?v=12-1-0).
+    </Accordian>
+
+    <Accordian title="Backend">
+      {/* Content */}
+    </Accordian>
+
+    <Accordian title="Platform">
+      - ### Deprecated agents hidden for new chats
+
+        WaveMaker Agent, WaveMaker UI Expert, and Backend Expert Agent are deprecated and no longer offered when you start a new chat, which now starts with WaveMaker Assistant. Chats you already started with them can continue.
+
+      - ### Entry animation inside bottom sheets <Pill type="mobile" />
+
+        Accordions, panels, and other widgets loaded inside a bottom sheet now animate in from the bottom, matching standard bottom sheet behavior on mobile.
+
+      - ### Ellipsis modes for the Label widget <Pill type="mobile" />
+
+        The Label widget now supports ellipsis at the start, middle, or end of truncated text in React Native apps.
+
+        Set `ellipsizemode` to `head`, `middle`, or `tail`.
+
+      - ### Global Page Cache setting <Pill type="mobile" />
+
+        Enable or disable Page Cache for every page in an application from a single application-level setting, instead of updating each page individually.
+
+      - ### Swipe events on page content <Pill type="mobile" />
+
+        Fixed the `onSwipeLeft` and `onSwipeRight` events on the page content component not firing when a user swipes left or right.
+
+      - ### Custom page transition animations <Pill type="mobile" />
+
+        Customize the animation used when navigating between pages, such as fade, slide, reveal, or scale, with a single app-level setting that applies to every page navigation.
+
+        Set `pageTransitionAnimation` in `wm_rn_config.json`, for example `slide_from_right`.
+
+      - ### Background image blur effect <Pill type="mobile" />
+
+        Apply a blur effect to a widget's background image in React Native apps, with an intensity from 0 to 100, without blurring the widget's content.
+
+        Set the `backdrop-filter` style property to a blur value, for example `backdrop-filter: blur(10px)`.
+
+      - ### Two-way binding for more form widgets <Pill type="web" />
+
+        Checkbox, Checkbox Set, Switch, Currency, and Radioset widgets in React apps now support two-way binding, matching Angular apps.
+
+      - ### Widget properties aligned with Angular apps <Pill type="web" />
+
+        Width and height, Text, Label, Icon, HTML, Iframe, and Chips widgets in React apps now handle their properties and accessibility attributes the same way as in Angular apps.
+    </Accordian>
+
+    <Accordian title="Product Ecosystem">
+      {/* Content */}
+    </Accordian>
+  </TabItem>
+
+  <TabItem name="Bug Fixes">
+    <Accordian title="User Interface">
+      - ### Read-only Chips field displays as text <Pill type="web" /> <Pill type="angular" />
+
+        Fixed a Chips field in a read-only Live Form displaying its values as a plain string instead of as chips in Angular apps.
+
+      - ### Minimum characters property on Chips widget <Pill type="web" /> <Pill type="angular" />
+
+        Fixed the `minchars` property on the Chips widget being ignored, so suggestions appear only after the user types the minimum number of characters in Angular apps.
+
+      - ### Live Filter resets time to zero <Pill type="web" /> <Pill type="angular" />
+
+        Fixed the Live Filter intermittently resetting the time to 00:00 when a user first enters a value in the time dropdown in Angular apps.
+
+      - ### Widget accessibility fixes <Pill type="web" /> <Pill type="angular" />
+
+        Fixed accessibility issues in the Table, Search, and Breadcrumb widgets in Angular apps.
+
+      - ### Main page layout breaks after switching from a Partial dialog <Pill type="web" /> <Pill type="angular" />
+
+        Fixed the Main page canvas rendering a distorted layout after switching from a Dialog widget opened in a Partial page in Studio.
+
+      - ### Hidden widgets in a Dialog appear after switching pages <Pill type="web" /> <Pill type="angular" />
+
+        Fixed an issue where widgets inside a Dialog with the **Show** property set to `false` became visible on the canvas after switching pages and returning to the original page in Studio, even when **Show Hidden Elements** was disabled. These widgets now remain hidden across page switches.
+
+      - ### PATCH API path parameters missing in variable inputs <Pill type="web" /> <Pill type="angular" />
+
+        Fixed path parameters not appearing as inputs in the Data tab of a Web Service variable for an imported PATCH API.
+    </Accordian>
+
+    <Accordian title="Backend">
+      {/* Content */}
+    </Accordian>
+
+    <Accordian title="Platform">
+      - ### Keyboard next action across input fields <Pill type="mobile" />
+
+        Fixed the keyboard's next action so users can move to the next input field and keep entering values without dismissing the keyboard.
+
+      - ### Date and time picker buttons on Android <Pill type="mobile" />
+
+        Fixed the Select and Cancel buttons on the Date and Time pickers not responding to taps on Android when the widget is used inside a form.
+
+      - ### Canvas elements overflowing with vw and vh <Pill type="mobile" />
+
+        Fixed elements overflowing the mobile canvas, and becoming invisible or untappable, when sized with `vw` and `vh`, which no longer affect the mobile canvas.
+
+      - ### Security updates for lodash and debug <Pill type="mobile" />
+
+        Upgraded the `lodash` library to 4.18.1 and the `debug` library to 4.4.3 in React Native apps to address security vulnerabilities in the earlier versions.
+
+      - ### Validation message layout shift <Pill type="mobile" />
+
+        Fixed an empty validation message container shifting the form layout when a field has validation but no `validationmessage`.
+
+      - ### Form field readonly property <Pill type="mobile" />
+
+        Fixed the Form Field `readonly` property so a read-only field stays non-editable at runtime, regardless of the form's insert or edit mode.
+
+      - ### Bottom sheet detaching on Android <Pill type="mobile" />
+
+        Fixed the bottom sheet detaching from the bottom of the screen on Android, so it stays anchored when the keyboard opens and closes.
+
+      - ### Page reloads when a deferred partial loads <Pill type="web" />
+
+        Fixed the whole page showing its loader, instead of only the partial, when a container hosting a partial with `deferload` enabled becomes visible for the first time in React apps.
+
+      - ### Partial parameters not ready on first render <Pill type="web" />
+
+        Fixed partial page parameters not being available when the partial first renders in React apps.
+
+      - ### Partial scripts not reaching the host page <Pill type="web" />
+
+        Fixed scripts in a partial failing to access widgets on the page that hosts the partial in React apps.
+
+      - ### Pagination fixes in Table and List <Pill type="web" />
+
+        Fixed pagination in Table and List widgets so page links navigate, the current page is highlighted, `maxsize` and page size changes apply, and the pagination bar stays aligned in React apps.
+
+      - ### Table rows not selectable <Pill type="web" />
+
+        Fixed rows in a Table with multiple selection not getting selected when clicked in React apps.
+
+      - ### Table column widgets updating every row <Pill type="web" />
+
+        Fixed a widget in a Table column, such as a toggle, changing the value in every row instead of only its own row in React apps.
+
+      - ### Table not reloading after an empty search <Pill type="web" />
+
+        Fixed a Table showing a blank page instead of its records when reloaded after a search that returned no results in React apps.
+
+      - ### Form fields in view and edit mode <Pill type="web" />
+
+        Fixed form fields being editable in view mode and staying disabled after switching the form to edit mode in React apps.
+
+      - ### Required fields blocking form submission <Pill type="web" />
+
+        Fixed required-field validation keeping a field, such as a Select, invalid after a value is entered, which left Save and Submit disabled in React apps.
+
+      - ### Saved values not shown in edit forms <Pill type="web" />
+
+        Fixed Select fields in a form not showing their saved values when the form opens for editing in React apps.
+
+      - ### Form fields in repeated items not updating <Pill type="web" />
+
+        Fixed fields inside repeated form items not updating when another field in the same item changes value in React apps.
+
+      - ### Dialog layout broken by overlay styles <Pill type="web" />
+
+        Fixed Dialog styles being applied to the background overlay, which broke the dialog's layout in React apps.
+
+      - ### Dialog widgets keep values after reopening <Pill type="web" />
+
+        Fixed widgets inside a Dialog, such as File Upload, keeping their previous values after the dialog is closed and opened again in React apps.
+
+      - ### Chips selection and boolean properties <Pill type="web" />
+
+        Fixed the Chips widget not selecting values, and boolean properties set to the string "false" being treated as true, in React apps.
+
+      - ### Actions on widgets with underscores in names <Pill type="web" />
+
+        Fixed actions, such as a button click, not working on widgets whose names contain an underscore in React apps.
+
+      - ### Selection not updating dependent content <Pill type="web" />
+
+        Fixed selecting an item not updating labels and counts that depend on the selection in React apps.
+
+      - ### Search widget dropdown selection <Pill type="web" />
+
+        Fixed the Search widget not selecting a value from its dropdown when used inside dynamic content in React apps.
+
+      - ### Button clicks blocked by parent handlers <Pill type="web" />
+
+        Fixed the Button `onClick` event not firing when a parent element stops event propagation in React apps.
+
+      - ### Spinner missing for a variable's spinner context <Pill type="web" />
+
+        Fixed the loading spinner not appearing over the widget set as a variable's spinner context in React apps.
+
+      - ### Checkboxes not responding to selection <Pill type="web" />
+
+        Fixed checkboxes rendering incorrectly and not responding to select or unselect in React apps.
+
+      - ### Static service variable inputs not sent <Pill type="web" />
+
+        Fixed static values bound to a service variable's inputs not being sent with the request in React apps.
+
+      - ### Menu and Nav opening on hover <Pill type="web" />
+
+        Fixed Menu and Nav widgets opening on hover when `showonhover` is turned off in React apps.
+
+      - ### Script error when reading form validity <Pill type="web" />
+
+        Fixed a script error when a form submit handler reads the form's `valid` state in React apps.
+
+      - ### Production app crash on authentication state <Pill type="web" />
+
+        Fixed React apps crashing in production builds when a page reads the logged-in user's state.
+    </Accordian>
+
+    <Accordian title="Product Ecosystem">
+      {/* Content */}
+    </Accordian>
+  </TabItem>
+</ReleaseNotesTabs>
